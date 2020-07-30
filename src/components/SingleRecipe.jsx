@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SingleRecipeHeader from './SingleRecipeHeader';
 import axios from 'axios';
+import SimilarCard from './SimilarCard';
 
 export class SingleRecipe extends Component {
   state = {
@@ -9,6 +10,7 @@ export class SingleRecipe extends Component {
       summary: '',
       analyzedInstructions: [{ steps: [{ step: 'step' }] }],
     },
+    similar: [],
   };
   componentDidMount() {
     let id = this.props.match.params.id;
@@ -16,7 +18,16 @@ export class SingleRecipe extends Component {
       .get(
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=07ebe5da21d749dc98a78f4c5e85f316`
       )
-      .then((res) => this.setState({ information: res.data }));
+      .then((res) => {
+        this.setState({ information: res.data });
+        axios
+          .get(
+            `https://api.spoonacular.com/recipes/${id}/similar?apiKey=07ebe5da21d749dc98a78f4c5e85f316&number=8`
+          )
+          .then((res) => {
+            this.setState({ similar: res.data });
+          });
+      });
   }
   render() {
     let {
@@ -38,11 +49,15 @@ export class SingleRecipe extends Component {
       veryHealthy,
     } = this.state.information;
     summary = summary.replace(/<.+?>/gi, '');
-    let step = analyzedInstructions[0].steps.map((step) => (
-      <li key={Math.random()} className="step">
-        {step.step}
-      </li>
-    ));
+    let step = analyzedInstructions[0] ? (
+      analyzedInstructions[0].steps.map((step) => (
+        <li key={Math.random()} className="step">
+          {step.step}
+        </li>
+      ))
+    ) : (
+      <div></div>
+    );
     let dishType = dishTypes.map((dish) => (
       <p className="dish-type" key={dish}>
         {dish}
@@ -66,6 +81,9 @@ export class SingleRecipe extends Component {
       <div key={tag} className="tag">
         {tag}
       </div>
+    ));
+    let similarRecipe = this.state.similar.map((similar) => (
+      <SimilarCard key={similar.id} recipe={similar} />
     ));
     return (
       <div className="single-recipe-body">
@@ -108,6 +126,12 @@ export class SingleRecipe extends Component {
             <h1 className="section-heading">INSTRUCTIONS</h1>
             <ul className="steps">{step}</ul>
           </section>
+          <section className="similar-section">
+            <div>
+              <h1>Similar Recipes</h1>
+            </div>
+            <div className="similar-recipes">{similarRecipe}</div>
+          </section>
 
           <div className="credits">
             <q>{creditsText}</q>
@@ -119,4 +143,8 @@ export class SingleRecipe extends Component {
 }
 
 export default SingleRecipe;
-//tags, dishtypes, steps
+// INGREDIENTS
+// SOME DONT HAVE INSTRUCTIONS
+// ALL RECIPES COMPONENT
+// SEARCH RECIPES COMPONENT
+// ...

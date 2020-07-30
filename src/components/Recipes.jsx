@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
-
-export class Recipes extends Component {
+import SingleRecipeCard from './SingleRecipeCard';
+import axios from 'axios';
+class Recipes extends Component {
   state = {
-    recipes: [],
+    randomRecipes: [],
   };
   componentDidMount() {
-    //   'https://api.spoonacular.com/recipes/complexSearch?apiKey=07ebe5da21d749dc98a78f4c5e85f316'
+    if (this.state.randomRecipes.length === 0) {
+      // axios
+      //   .get(
+      //     'https://api.spoonacular.com/recipes/random?apiKey=07ebe5da21d749dc98a78f4c5e85f316&number=8'
+      //   )
+      //   .then((res) => {
+      //     this.setState({ recipes: res.data.recipes });
+      //   });
+    }
   }
   render() {
-    return <div></div>;
+    const randomRecipe = this.state.randomRecipes.map((recipe) => (
+      <SingleRecipeCard key={recipe.id} recipe={recipe} />
+    ));
+    return <div className="random-recipes">{randomRecipe}</div>;
   }
 }
 
