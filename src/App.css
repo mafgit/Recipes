@@ -325,6 +325,8 @@ section {
     margin: 10px auto;
     border-radius: 10px;
     height: 200px;
+justify-content: center;
+align-items: center;
   }
   .header-recipe-top {
     flex-direction: column;
