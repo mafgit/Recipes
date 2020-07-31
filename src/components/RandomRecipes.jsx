@@ -25,14 +25,11 @@ export class RandomRecipes extends Component {
     ));
     return (
       <div>
-        <div className="random-recipes">
-          {randomRecipe}
-
-          <div style={{ textAlign: 'center', padding: 40 }}>
-            <Link to="/recipes/" className="more-card">
-              More
-            </Link>
-          </div>
+        <div className="random-recipes">{randomRecipe}</div>
+        <div style={{ textAlign: 'center', padding: 40, margin: 'auto' }}>
+          <Link to="/recipes/" className="more-card">
+            More
+          </Link>
         </div>
       </div>
     );
