@@ -327,7 +327,6 @@ section {
     height: 200px;
 justify-content: center;
 align-items: center;
-padding-top:20px;
   }
   .header-recipe-top {
     flex-direction: column;
@@ -381,4 +380,7 @@ padding-top:20px;
   .single-btn {
     width: 100px;
   }
+.info {
+padding-top:20px;
+}
 }
