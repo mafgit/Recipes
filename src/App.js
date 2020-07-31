@@ -4,7 +4,7 @@ import './App.css';
 import SingleRecipe from './components/SingleRecipe';
 import Startpage from './components/Startpage';
 import SearchRecipes from './components/SearchRecipes';
-import Recipes from './components/Recipes';
+import RandomPage from './components/RandomPage';
 
 function App() {
   return (
@@ -12,10 +12,11 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Startpage} />
-          <Route exact path="/recipes" component={Recipes} />
+          <Route exact path="/recipes/" component={RandomPage} />
           <Route
             path="/recipes/search/:query"
-            render={(props) => <SearchRecipes {...props} />}
+            component={SearchRecipes}
+            // render={(props) => <SearchRecipes {...props} />}
           />
           <Route path="/recipes/:id" component={SingleRecipe} />
         </Switch>

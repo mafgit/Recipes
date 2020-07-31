@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
 import SingleRecipeCard from './SingleRecipeCard';
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import SingleRecipeHeader from './SingleRecipeHeader';
+import { apiKey } from '../config';
 export class SearchRecipes extends Component {
   state = {
     recipes: [],
-    search: '',
+    query: '',
   };
-  componentDidUpdate() {
+  componentDidMount() {
+    this.setState({ query: this.props.match.params.query });
     axios
       .get(
-        `https://api.spoonacular.com/recipes/complexSearch?query=${this.props.match.params.query}&apiKey=07ebe5da21d749dc98a78f4c5e85f316`
+        `https://api.spoonacular.com/recipes/complexSearch?query=${this.props.match.params.query}&number=30&apiKey=${apiKey}`
       )
       .then((res) => {
         this.setState({ recipes: res.data.results });
       });
   }
   render() {
-    let recipes = this.state.recipes.map((recipe) => {
+    const recipes = this.state.recipes.map((recipe) => {
       return <SingleRecipeCard recipe={recipe} key={recipe.id} />;
     });
     return (
-      <div key={this.props.match.params.query}>
+      <div>
         <SingleRecipeHeader />
         <div className="search-page">{recipes}</div>
       </div>
@@ -30,4 +31,4 @@ export class SearchRecipes extends Component {
   }
 }
 
-export default withRouter(SearchRecipes);
+export default SearchRecipes;

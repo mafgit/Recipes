@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import SingleRecipeCard from './SingleRecipeCard';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { apiKey } from '../config';
-
-export class RandomRecipes extends Component {
+import { SingleRecipeHeader } from './SingleRecipeHeader';
+class RandomPage extends Component {
   state = {
     randomRecipes: [],
   };
@@ -15,7 +14,7 @@ export class RandomRecipes extends Component {
           `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=8`
         )
         .then((res) => {
-          return this.setState({ randomRecipes: res.data.recipes });
+          this.setState({ randomRecipes: res.data.recipes });
         });
     }
   }
@@ -25,18 +24,11 @@ export class RandomRecipes extends Component {
     ));
     return (
       <div>
-        <div className="random-recipes">
-          {randomRecipe}
-
-          <div style={{ textAlign: 'center', padding: 40 }}>
-            <Link to="/recipes/" className="more-card">
-              More
-            </Link>
-          </div>
-        </div>
+        <SingleRecipeHeader />
+        <div className="random-recipes">{randomRecipe}</div>
       </div>
     );
   }
 }
 
-export default RandomRecipes;
+export default RandomPage;

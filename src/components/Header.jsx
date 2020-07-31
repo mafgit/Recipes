@@ -4,13 +4,6 @@ export class Header extends Component {
   state = {
     search: '',
   };
-  onClick = () => {
-    if (this.state.search) {
-      this.props.history.push({
-        pathname: `/recipes/search/${this.state.search}`,
-      });
-    }
-  };
   onChange = (e) => {
     this.setState({ search: e.target.value });
   };
@@ -21,9 +14,12 @@ export class Header extends Component {
           <h1>mafrecipes</h1>
           <p>The Largest Collection of Recipes</p>
           <input type="text" onChange={this.onChange} />
-          <button className="search-btn" onClick={this.onClick}>
+          <a
+            href={'/recipes/search/' + this.state.search}
+            className="search-btn"
+          >
             Search
-          </button>
+          </a>
         </div>
       </header>
     );

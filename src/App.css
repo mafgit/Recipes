@@ -75,6 +75,7 @@ h1 {
   background-color: rgb(192, 1, 11);
   color: #fff;
   padding: 10px;
+  text-align: center;
 }
 #info {
   display: flex;
@@ -145,10 +146,6 @@ h1 {
   color: #fff;
   cursor: pointer;
   margin: 20px auto;
-}
-.random-recipes {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .random-heading {
@@ -257,10 +254,6 @@ section {
   margin-bottom: 20px;
   border-radius: 0;
 }
-.similar-recipes {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
 
 .similar-card {
   color: #fff;
@@ -283,7 +276,106 @@ section {
   filter: brightness(1.2);
   transition: 0.3s;
 }
-.search-page {
+.single-btn,
+.single-input {
+  background-color: #1c1c1c;
+  color: #fff;
+  margin-left: 10px;
+}
+.search-page,
+.random-recipes,
+.similar-recipes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+@media (max-width: 1250px) {
+  .info {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+@media (max-width: 1250px) {
+  .search-page,
+  .random-recipes,
+  .similar-recipes {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 1000px) {
+  .search-page,
+  .random-recipes,
+  .similar-recipes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .search-page,
+  .random-recipes,
+  .similar-recipes {
+    grid-template-columns: 1fr;
+  }
+  #info {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .header-hide input {
+    width: 90%;
+  }
+  .info {
+    margin: 10px auto;
+    border-radius: 10px;
+    height: 200px;
+  }
+  .header-recipe-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .header-recipe-top h1,
+  .header-recipe-top div {
+    margin: 10px auto;
+  }
+  .header-recipe {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 800px;
+  }
+  .header-recipe img {
+    width: 400px;
+    margin: 20px auto;
+  }
+}
+@media (max-width: 500px) {
+  .header-recipe img {
+    width: 100%;
+    height: 200px;
+  }
+  .similar-card {
+    width: 100%;
+  }
+  h1 {
+    text-align: center;
+    margin: auto;
+  }
+  .recipe-intro .tags,
+  .dish-types {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 450px) {
+  .header-recipe-top div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .single-input {
+    margin: 10px auto;
+    width: 100%;
+  }
+  .single-btn {
+    width: 100px;
+  }
 }

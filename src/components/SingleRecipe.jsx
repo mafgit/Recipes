@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SingleRecipeHeader from './SingleRecipeHeader';
 import axios from 'axios';
 import SimilarCard from './SimilarCard';
+import { apiKey } from '../config';
 
 export class SingleRecipe extends Component {
   state = {
@@ -16,13 +17,13 @@ export class SingleRecipe extends Component {
     let id = this.props.match.params.id;
     axios
       .get(
-        `https://api.spoonacular.com/recipes/${id}/information?apiKey=07ebe5da21d749dc98a78f4c5e85f316`
+        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`
       )
       .then((res) => {
         this.setState({ information: res.data });
         axios
           .get(
-            `https://api.spoonacular.com/recipes/${id}/similar?apiKey=07ebe5da21d749dc98a78f4c5e85f316&number=8`
+            `https://api.spoonacular.com/recipes/${id}/similar?apiKey=${apiKey}&number=8`
           )
           .then((res) => {
             this.setState({ similar: res.data });

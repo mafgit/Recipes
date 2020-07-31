@@ -4,14 +4,7 @@ export class SingleRecipeHeader extends Component {
   state = {
     search: '',
   };
-  onClick = () => {
-    console.log('x');
-    if (this.state.search) {
-      this.props.history.push({
-        pathname: `/recipes/search/${this.state.search}`,
-      });
-    }
-  };
+
   onChange = (e) => {
     this.setState({ search: e.target.value });
   };
@@ -22,10 +15,17 @@ export class SingleRecipeHeader extends Component {
           <h1>mafrecipes</h1>
         </Link>
         <div>
-          <input type="text" onChange={this.onChange} />
-          <button className="search-btn" onClick={this.onClick}>
+          <input
+            className="single-input"
+            type="text"
+            onChange={this.onChange}
+          />
+          <a
+            href={'/recipes/search/' + this.state.search}
+            className="search-btn single-btn"
+          >
             Search
-          </button>
+          </a>
         </div>
       </div>
     );

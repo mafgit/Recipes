@@ -9,7 +9,7 @@ export class SingleRecipeCard extends Component {
         key={this.props.recipe.id}
         id={this.props.recipe.id}
       >
-        <img src={this.props.recipe.image} alt="Image can't be loaded" />
+        <img src={this.props.recipe.image} alt="Couldn't be loaded" />
         <div>
           <h1>{this.props.recipe.title.slice(0, 20)}...</h1>
           <p
