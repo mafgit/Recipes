@@ -327,6 +327,7 @@ section {
     height: 200px;
 justify-content: center;
 align-items: center;
+padding-top:20px;
   }
   .header-recipe-top {
     flex-direction: column;
