@@ -325,8 +325,6 @@ section {
     margin: 10px auto;
     border-radius: 10px;
     height: 200px;
-justify-content: center;
-align-items: center;
   }
   .header-recipe-top {
     flex-direction: column;
@@ -355,10 +353,6 @@ align-items: center;
   .similar-card {
     width: 100%;
   }
-  h1 {
-    text-align: center;
-    margin: auto;
-  }
   .recipe-intro .tags,
   .dish-types {
     text-align: center;
@@ -380,7 +374,4 @@ align-items: center;
   .single-btn {
     width: 100px;
   }
-.info {
-padding-top:20px;
-}
 }
