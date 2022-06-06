@@ -11,7 +11,7 @@ export class SearchRecipes extends Component {
   componentDidMount() {
     this.setState({ query: this.props.match.params.query });
     let s = this.props.match.params.query.toLowerCase()
-    if (s.search(/pig|bacon|wine|alchohol|swine|ham|nutmeg|beer/) === -1)
+    if (s.search(/pig|bacon|wine|alchohol|swine|ham|nutmeg|beer|pork/) === -1)
       axios
         .get(
           `https://api.spoonacular.com/recipes/complexSearch?query=${this.props.match.params.query}&number=30&apiKey=${apiKey}`
