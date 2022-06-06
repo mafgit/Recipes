@@ -10,13 +10,16 @@ export class SearchRecipes extends Component {
   };
   componentDidMount() {
     this.setState({ query: this.props.match.params.query });
-    axios
-      .get(
-        `https://api.spoonacular.com/recipes/complexSearch?query=${this.props.match.params.query}&number=30&apiKey=${apiKey}`
-      )
-      .then((res) => {
-        this.setState({ recipes: res.data.results });
-      });
+    let s = this.props.match.params.query.toLowerCase()
+    if (s.search(/pig|bacon|wine|alchohol|swine|ham|nutmeg|beer/) === -1)
+      axios
+        .get(
+          `https://api.spoonacular.com/recipes/complexSearch?query=${this.props.match.params.query}&number=30&apiKey=${apiKey}`
+        )
+        .then((res) => {
+          this.setState({ recipes: res.data.results });
+        });
+    else alert("try something else")
   }
   render() {
     const recipes = this.state.recipes.map((recipe) => {
