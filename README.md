@@ -1,4 +1,3 @@
-> https://mafrecipes.netlify.app/
 # Recipes
 - Made Using React
 - My First Successful React App
